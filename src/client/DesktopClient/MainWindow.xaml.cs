@@ -33,11 +33,11 @@ namespace DesktopClient
             connection = new HubConnectionBuilder()
                 .WithUrl("https://localhost:7004/notify")
                 .Build();
-            connection.On<string, string>("Recieve", (username, message) =>
+            connection.On<string>("Recieve", ( message) =>
             {
                 Dispatcher.Invoke(() =>
                 {
-                    var newNotify = $"{username} : {message}";
+                    var newNotify = $" {message}";
                     
                     chatbox.Items.Insert(0, newNotify);
                     Debug.WriteLine("Notify recieved -" + newNotify);
