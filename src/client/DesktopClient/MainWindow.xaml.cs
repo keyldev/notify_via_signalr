@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -23,56 +24,15 @@ namespace DesktopClient
     public partial class MainWindow : Window
     {
 
-        HubConnection connection;
+        
 
         public MainWindow()
         {
             InitializeComponent();
-            this.Loaded += MainWindow_Loaded;
 
-            connection = new HubConnectionBuilder()
-                .WithUrl("https://localhost:7004/notify")
-                .Build();
-            connection.On<string>("Recieve", ( message) =>
-            {
-                Dispatcher.Invoke(() =>
-                {
-                    var newNotify = $" {message}";
-                    
-                    chatbox.Items.Insert(0, newNotify);
-                    Debug.WriteLine("Notify recieved -" + newNotify);
-                });
-            });
+            
         }
 
-        private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                await connection.StartAsync();
-                Debug.WriteLine("Common notify started");
-                sendBtn.IsEnabled = true;
-                chatbox.Items.Add("Вы вошли в чат");
-
-            }
-            catch (Exception ex)
-            {
-
-                Debug.WriteLine("" + ex.Message);
-            }
-        }
-
-        private async void sendBtn_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                await connection.SendAsync("SendNotify", userTextBox.Text, messageTextBox.Text);
-            }
-            catch (Exception ex)
-            {
-
-                Debug.WriteLine(ex.Message);
-            }
-        }
     }
+    
 }

@@ -6,14 +6,28 @@
         xmlns:local="clr-namespace:DesktopClient"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <local:MainViewModel/>
+    </Window.DataContext>
     <Grid>
-        <StackPanel Margin="4">
+        <ItemsControl ItemsSource="{Binding TaxiOrder}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding ClientName}"/>
+                        <Button Content="Accept" Command="{Binding AcceptOrder}"/>
+                    </StackPanel>
+                   
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <!--<StackPanel Margin="4">
             <Label Content="Введите логин"/>
             <TextBox x:Name="userTextBox" />
             <Label Content="Введите сообщение"/>
             <TextBox x:Name="messageTextBox" />
             <Button x:Name="sendBtn" Content="Отправить" Click="sendBtn_Click" IsEnabled="False" />
             <ListBox x:Name="chatbox" />
-        </StackPanel>
+        </StackPanel>-->
     </Grid>
 </Window>
