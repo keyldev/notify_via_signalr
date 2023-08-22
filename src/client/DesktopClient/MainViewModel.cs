@@ -72,7 +72,7 @@ namespace DesktopClient
 
                         OrderAcceptDto accept = new OrderAcceptDto();
                         accept.DriverId = order.ClientId;
-                        accept.OrderId = "ozX1TqFBy7jlpHtlhzA0vw";
+                        accept.OrderId = "ozX1TqFBy7jlpHtlhzA0vw"; // change it to
                         //var json = 
                         var json = new StringContent(JsonConvert.SerializeObject(order), Encoding.UTF8, "application/json");
 
