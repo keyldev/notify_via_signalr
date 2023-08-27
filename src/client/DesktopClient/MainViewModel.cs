@@ -40,7 +40,9 @@ namespace DesktopClient
         {
             TaxiOrder = new ObservableCollection<OrderDto>();
             connection = new HubConnectionBuilder()
-                .WithUrl("https://localhost:7104/taxiHub")
+                .WithUrl("https://localhost:7104/taxiHub", options=>{
+                    options
+                })
                 .Build();
             connection.On<TaxiOrder>("NewOrder", handler);
             try
