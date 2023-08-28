@@ -41,7 +41,7 @@ namespace DesktopClient
             TaxiOrder = new ObservableCollection<OrderDto>();
             connection = new HubConnectionBuilder()
                 .WithUrl("https://localhost:7104/taxiHub", options=>{
-                    options
+                    options.Headers.Add("Authorization", $"Bearer {AccessToken}");
                 })
                 .Build();
             connection.On<TaxiOrder>("NewOrder", handler);
