@@ -33,6 +33,13 @@ namespace DesktopClient
             get { return _taxiOrders; }
             set { _taxiOrders = value; NotifyPropertyChanged(); }
         }
+        private string _accessToken;
+
+        public string AccessToken
+        {
+            get { return _accessToken; }
+            set { _accessToken = value; NotifyPropertyChanged(); }
+        }
 
 
 
